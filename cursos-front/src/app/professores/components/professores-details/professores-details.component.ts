@@ -22,7 +22,6 @@ export class ProfessoresDetailsComponent implements OnInit {
   matricula!: number;
 
   professoresForm = this.form.group({
-    matricula: [null, [Validators.required]],
     nome: [null, [Validators.required]],
     rg: [null, [Validators.required]],
     cpf: [null, [Validators.required]],
