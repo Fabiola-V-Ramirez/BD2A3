@@ -1,0 +1,36 @@
+header{
+  height: 10%;
+}
+
+mat-toolbar {
+  background-color: #5C6BC0;
+  color: white;
+  font-size: 24px;
+  font-weight: 400;
+  height: 100%;
+  padding: 0 5%;
+}
+
+mat-toolbar button {
+  background-color: #5C6BC0;
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
+
+mat-toolbar button:hover {
+  cursor: pointer;
+}
+
+mat-toolbar span {
+ margin-left: 90%;
+}
+
+main {
+  min-height: 80%;
+}
+
+footer {
+  background-color: #5C6BC0;
+  height: 10%;
+}

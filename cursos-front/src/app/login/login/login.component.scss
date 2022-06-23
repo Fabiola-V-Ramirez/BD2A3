@@ -1,0 +1,42 @@
+main {
+  background-color: #5C6BC0;
+  height: 100%;
+}
+
+mat-card {
+  border-radius: 15px;
+  box-sizing: border-box;
+  height: 60%;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40%;
+}
+
+form {
+  box-sizing: border-box;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+h1 {
+  color: #5C6BC0;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+mat-form-field {
+  margin: 7.5% 1.5%;
+  width: 40%;
+}
+
+button {
+  border-radius: 7.5px;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 1.5%;
+  width: 25%;
+}

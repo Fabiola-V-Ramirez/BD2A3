@@ -1,0 +1,117 @@
+<div class = "menu">
+  <button color="primary" routerLink = "/cursos" class = "menu-button">Curso</button>
+  <button color="primary" routerLink = "/disciplinas" class = "menu-button">Disciplina</button>
+  <button color="primary" routerLink = "/alunos" class = "menu-button">Aluno</button>
+  <button color="primary" routerLink = "/professores" class = "menu-button">Professor</button>
+</div>
+
+<div class = "search">
+      <mat-form-field fxFill appearance="legacy">
+        <mat-label>Pesquisar</mat-label>
+        <input matInput type="text" [formControl]="filterControl" />
+      </mat-form-field>
+</div>
+
+<div class="tableForm">
+  <table
+    mat-table
+    [dataSource]="dataTable"
+    aria-describedby="Lista de alunos"
+  >
+    <ng-container matColumnDef="matricula">
+      <th mat-header-cell *matHeaderCellDef>
+        <span class="table-header">
+          Matrícula
+        </span>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element?.matricula }}</td>
+    </ng-container>
+
+   <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef>
+        <span class="table-header">
+          Nome
+        </span>
+       </th>
+      <td mat-cell *matCellDef="let element">{{ element?.nome }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="rg">
+      <th mat-header-cell *matHeaderCellDef>
+        <span class="table-header">
+          RG
+        </span>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element?.rg }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cpf">
+      <th mat-header-cell *matHeaderCellDef>
+        <span class="table-header">
+          CPF
+        </span>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element?.cpf }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>
+        <span class="table-header">
+          Email
+        </span>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element?.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="observacoes">
+      <th mat-header-cell *matHeaderCellDef>
+        <span class="table-header">
+          Observações
+        </span>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element?.observacoes }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+      >
+        <span class="table-header">Ação</span>
+      </th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+      >
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="delete(element.matricula)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+
+        <button
+          mat-icon-button
+          [routerLink]="element.matricula"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <div class = "paginator">
+    <mat-paginator
+      [length]="totalLength"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[5, 10, 15, 20]"
+      (page)="pageChange($event)"
+      showFirstLastButtons
+    >
+    </mat-paginator>
+  </div>
+</div>

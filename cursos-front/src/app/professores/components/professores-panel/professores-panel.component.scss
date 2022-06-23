@@ -1,0 +1,57 @@
+.menu{
+  text-align: center;
+}
+
+.menu-button{
+  background: transparent;
+  border: 2.5px solid transparent;
+  border-radius: 3px;
+  color: #5C6BC0;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 1.5% 3%;
+  padding: 1.5%;
+  width: 10%;
+}
+
+.menu-button:hover{
+  border-bottom: 2.5px solid #26C6DA;
+}
+
+.menu-button:focus{
+  border-bottom: 2.5px solid #26C6DA;
+}
+
+.search {
+  box-sizing: border-box;
+  margin: 2.5% auto;
+  width: 90%
+}
+
+.search mat-form-field {
+  width: 30%;
+}
+
+.tableForm {
+  margin: 0 auto;
+  width: 90%;
+}
+
+table {
+  width: 100%;
+}
+
+table th {
+  width: 14.2%;
+  text-align: center;
+}
+
+table td {
+  width: 14.2%;
+  text-align: center;
+}
+
+.paginator {
+  margin: 2.5% auto;
+  width: 39.7%;
+}

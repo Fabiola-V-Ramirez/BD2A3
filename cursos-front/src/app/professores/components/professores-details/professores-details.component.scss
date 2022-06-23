@@ -1,0 +1,50 @@
+.menu{
+  text-align: center;
+}
+
+.menu-button{
+  background: transparent;
+  border: 2.5px solid transparent;
+  border-radius: 3px;
+  color: #5C6BC0;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 1.5% 3%;
+  padding: 1.5%;
+  width: 10%;
+}
+
+.menu-button:hover{
+  border-bottom: 2.5px solid #26C6DA;
+}
+
+.menu-button:focus{
+  border-bottom: 2.5px solid #26C6DA;
+}
+
+form {
+  margin: 1.5% auto;
+  width: 75%;
+}
+
+mat-form-field {
+  width: 30.333%;
+  margin: 0 1.5%;
+}
+
+.big-input {
+  width: 63.6%
+}
+
+.buttons {
+  margin-top: 2.5%;
+  text-align: center;
+}
+
+.buttons button {
+  border-radius: 7.5px;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 1.5%;
+  width: 12.5%;
+}

@@ -1,0 +1,54 @@
+<main>
+  <mat-card>
+
+    <form
+      [formGroup]="loginForm"
+      (keyup)="Enter($event)"
+    >
+
+      <h1>Bem vindo!</h1>
+
+      <mat-form-field appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input formControlName="email" name='email' matInput>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Senha</mat-label>
+        <input
+          formControlName="password"
+          [type]="hidePassword ? 'password' : 'text'"
+          matInput
+        >
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hidePassword = !hidePassword"
+        >
+          <mat-icon>
+            {{ hidePassword ? "visibility_off" : "visibility" }}
+          </mat-icon>
+        </button>
+      </mat-form-field>
+
+      <div>
+        <button
+          (click)="login()"
+          [disabled]="!loginForm.valid || processingRequest"
+          mat-raised-button color = "primary"
+        >
+          {{ processingRequest ? "Processando..." : "Entrar" }}
+        </button>
+
+        <button
+          type = "reset"
+          mat-raised-button color = "primary"
+        >
+          Cancelar
+        </button>
+      </div>
+
+    </form>
+
+  </mat-card>
+</main>

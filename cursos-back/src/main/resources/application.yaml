@@ -1,0 +1,23 @@
+spring:
+  flyway:
+    enabled: false
+  main:
+    allow-circular-references: true
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/BD2A3?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: 110401
+    driverClassName: com.mysql.cj.jdbc.Driver
+    hikari:
+      maxLifeTime: 60000000
+  jpa:
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: on-param
