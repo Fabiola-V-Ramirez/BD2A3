@@ -61,27 +61,31 @@ CREATE TABLE IF NOT EXISTS cursos (
     PRIMARY KEY (id)
 );
 
+DROP TRIGGER IF EXISTS trig_desconto;
+DELIMITER $$
+CREATE TRIGGER trig_desconto
+BEFORE INSERT ON cursos
+FOR EACH ROW
+BEGIN
+SET NEW.preco = (NEW.preco * 0.75);
+END $$
+DELIMITER ;
+
 INSERT INTO cursos (nome, descricao, carga_horaria, preco)
 VALUES
-	('ENEM VIP', 'Provê acesso a matérias exclusivas, a 6 redações corrigidas e comentadas por mês, a 7 simulados anuais e a reuniões com nossos monitores', 640, 799.99),
-    ('ENEM PLUS', 'Provê acesso às matérias essências, a 4 redações corrigidas e comentadas por mês e a reuniões com nossos monitores', 500, 599.99),
-    ('Turma Essencial', 'Provê acesso às matérias essências e a 1 redação corrigida e comentada por mês', 420, 399.99),
-    ('Redação', 'Provê acesso às aulas de redação dissertativa argumentativa e a 4 redações corrigidas e comentadas por mês', 44, 99.99),
-    ('Inglês', null, 24, 299.99);
+	('ENEM VIP', 'Provê acesso a matérias exclusivas, a 6 redações corrigidas e comentadas por mês, a 7 simulados anuais e a reuniões com nossos monitores', 640, 800.00),
+    ('ENEM PLUS', 'Provê acesso às matérias essências, a 4 redações corrigidas e comentadas por mês e a reuniões com nossos monitores', 500, 600.00),
+    ('Turma Essencial', 'Provê acesso às matérias essências e a 1 redação corrigida e comentada por mês', 420, 400.00),
+    ('Redação', 'Provê acesso às aulas de redação dissertativa argumentativa e a 4 redações corrigidas e comentadas por mês', 44, 100.00),
+    ('Inglês', null, 24, 400.00);
     
-CREATE TABLE IF NOT EXISTS cursos_disciplinas (
-	id_curso INTEGER AUTO_INCREMENT,
-    id_disciplina INTEGER,
-    PRIMARY KEY (id_curso, id_disciplina)
-);
-
 CREATE TABLE IF NOT EXISTS professores (
 	matricula INTEGER AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
 	rg VARCHAR(9) NOT NULL,
     cpf VARCHAR(11) NOT NULL UNIQUE,
 	email VARCHAR(75) NOT NULL UNIQUE,
-	coordenador BOOLEAN NOT NULL,
+	coordenador BOOL NOT NULL,
     area_conhecimento INTEGER NOT NULL,
     PRIMARY KEY (matricula),
     FOREIGN KEY (area_conhecimento) REFERENCES areas_conhecimento(id)
@@ -110,14 +114,13 @@ VALUES
     ('Cristiane Vieira', '111111129', '11111111129', 'cristiane.vieira@outlook.com', 4, false),
 	('Fábio Barbosa Machado', '111111130', '11111111130', 'fabio.machado@gmail.com', 3, false);
     
-CREATE VIEW coordenadores 
-AS SELECT areas_conhecimento.nome AS area_conhecimento,
+CREATE VIEW coordenadores
+AS SELECT areas_conhecimento.id AS id,
+areas_conhecimento.nome AS area_conhecimento,
 professores.nome AS professor
 FROM areas_conhecimento
 INNER JOIN professores
 ON professores.coordenador = true AND areas_conhecimento.id = professores.area_conhecimento;
-
-SELECT * FROM coordenadores;
 
 CREATE TABLE IF NOT EXISTS alunos (
 	matricula INTEGER AUTO_INCREMENT,
@@ -152,6 +155,15 @@ VALUES
     ('Sophia de Souza Pereira', '222222239', '22222222239', 'sophia.pereira@outlook.com', null),
 	('João Miguel Rodrigues Lima', '222222240', '22222222240', 'joaom.lima@gmail.com', null);
 
+CREATE TABLE IF NOT EXISTS cursos_alunos (
+	id INTEGER AUTO_INCREMENT,
+    curso INTEGER,
+    aluno INTEGER,
+    PRIMARY KEY (id),
+    FOREIGN KEY (curso) REFERENCES cursos(id),
+    FOREIGN KEY (aluno) REFERENCES alunos(matricula)
+);
+
 CREATE TABLE IF NOT EXISTS usuarios_perfis (
   id_perfil_usuario INTEGER AUTO_INCREMENT ,
   descricao VARCHAR(255) NOT NULL UNIQUE,
@@ -165,7 +177,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
   id_usuario INTEGER AUTO_INCREMENT,
   nome VARCHAR(75) NOT NULL,
   email VARCHAR(75) NOT NULL,  
-  senha VARCHAR(256) NOT NULL,
+  senha VARCHAR(255) NOT NULL,
   id_perfil_usuario INTEGER  NOT NULL DEFAULT 2,
   PRIMARY KEY(id_usuario),
   FOREIGN KEY (id_perfil_usuario) REFERENCES usuarios_perfis(id_perfil_usuario)
